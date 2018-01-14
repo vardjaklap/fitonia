@@ -1,7 +1,6 @@
-'use strict';
+// 'use strict';
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
-  'ngRoute',
   'myApp.dashboard',
   'myApp.water',
     'myApp.training',
@@ -9,14 +8,50 @@ angular.module('myApp', [
     'myApp.food',
     'myApp.health',
     'myApp.settings',
-  'myApp.version'
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+  'myApp.version',
+    'ngAnimate',
+    'ngRoute'
+])
+
+
+
+
+
+.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/dashboard'});
-}]);
 
+  $routeProvider.when('/dashboard', {
+      templateUrl: 'dashboard/dashboard.html',
+      controller: 'DashboardCtrl'
+  })
+      .when('/food', {
+        templateUrl: 'food/food.html',
+        controller: 'FoodCtrl'
+    })
+      .when('/health', {
+          templateUrl: 'health/health.html',
+          controller: 'HealthCtrl'
+      })
+      .when('/note', {
+          templateUrl: 'note/note.html',
+          controller: 'NoteCtrl'
+      })
+      .when('/settings', {
+          templateUrl: 'settings/settings.html',
+          controller: 'SettingsCtrl'
+      })
+      .when('/training', {
+          templateUrl: 'training/training.html',
+          controller: 'TrainingCtrl'
+      })
+      .when('/water', {
+          templateUrl: 'water/water.html',
+          controller: 'WaterCtrl'
+      })
+      .otherwise({redirectTo: '/dashboard'});
+
+}]);
 
 
 $('.navOverlay').mouseenter(function(){
